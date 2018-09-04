@@ -1,3 +1,4 @@
+require "byebug"
 class Board
   attr_accessor :cups
 
@@ -28,24 +29,30 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+
     num_of_stones = @cups[start_pos].length
     @cups[start_pos] = []
-    (start_pos+1..start_pos + num_of_stones).each do |cup_idx|
-      # if current_player_name.side == 1
-      #   play_cups = (0...6).to_a
-      # else
-      #   play_cups = (7...13).to_a
-      # end
-      # unless play_cups.include?(cup_idx)
-        @cups[cup_idx] << :stone
-      #end
+    end_pos = start_pos + num_of_stones
+    # (start_pos+1..start_pos + num_of_stones).each do |cup_idx|
+    current_pos = start_pos + 1
+    until num_of_stones == 0
+      if @player1 == current_player_name
+        @cups[current_pos] << :stone unless current_pos == 13
+        num_of_stones -= 1
+        current_pos += 1
+      else
+        @cups[currrent_pos] << :stone unless current_pos == 6
+        num_of_stones -= 1
+        current_pos += 1
+      end
+      render
     end
 
-    if @cups[start_pos + num_of_stones].length == 1
-      next_turn(@cups[start_pos + num_of_stones])
-    end
-    render
-    # next_turn
+    # if @cups[start_pos + num_of_stones].length >= 1
+    #   next_turn(@cups[start_pos + num_of_stones])
+    # end
+
+    next_turn(end_pos)
   end
 
   def next_turn(ending_cup_idx)
