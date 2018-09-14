@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body text = "white" background = "https://images.pexels.com/photos/33597/guitar-classical-guitar-acoustic-guitar-electric-guitar.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+    <% if logged_in? %>
+      Welcome, <%= current_user.email %>
+      <form action= '<%= session_url %>' method="post">
+        <input type="hidden" name = "_method" value="delete">
+
+        <input type = "hidden"
+        name = "authenticity_token"
+        value '<%= form_authenticity_token %>' >
+
+        <input type="submit" value="Logout">
+
+      </form>
+    <% else %>
+      <input type = "submit" action = '<%= new_session_url %>' value = "Sign Up">
+      <input type = "submit" action = '<%= session_url %>' value = "Sign Out">
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
