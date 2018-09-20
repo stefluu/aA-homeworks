@@ -36,3 +36,16 @@ const isPrime = (number) => {
   }
   return true
 }
+
+
+// Phase I: Callbacks
+
+const titleize = (names, printCallback) => {
+  let new_arr = names.map{name =>
+    "Mx. $(name) Jingleheimer Schmidt"
+  }
+
+  const printCallback = new_arr.forEach(new_name){
+    console.log(new_name)
+  }
+}
