@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Canvas Practice</title>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="mycanvas"></canvas>
+    <script>
+    var canvas = document.getElementById('mycanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = "green";
+    ctx.fillRect(100,100,700,500);
+
+    ctx.beginPath ();
+    ctx.arc(300,300,194,0,2*Math.PI);
+    ctx.strokeStyle = "DarkGoldenrod";
+    ctx.lineWidth = 15;
+    ctx.stroke();
+
+    var grad = ctx.createLinearGradient(0,0,0,200);
+    // grad.addColorStop(0, "White")
+    grad.addColorStop(1, "Black");
+    grad.addColorStop(0.5, "Gold");
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(305,115);
+    ctx.lineTo(455, 400);
+    ctx.lineTo(145, 400);
+    ctx.closePath();
+    ctx.fillStyle = "Gold";
+    ctx.fill();
+    ctx.strokeStyle = "Gold";
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(227,265);
+    ctx.lineTo(379, 264);
+    ctx.lineTo(305, 395);
+    ctx.closePath();
+    ctx.fillStyle = "Black";
+    ctx.fill();
+    ctx.strokeStyle = "Black";
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+
+    </script>
+  </body>
+</html>
