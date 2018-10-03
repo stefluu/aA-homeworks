@@ -1,0 +1,73 @@
+Users
+column name	data type	details
+id	integer	not null, primay key
+username	string	not null, indexed, unique
+email	string	not null, indexed, unique
+password_digest	string	not null
+session_token	string	not null, indexed, unique
+created_at	datetime	not null
+updated_at	datetime	not null
+
+index on	username	unique:true
+index on	email	unique:true
+index on	session_token	unique:true
+
+Images
+column name	data type	details
+id	integer	not null, primary key
+user_id	integer	not null, indexed, foreign key
+img_url	string	not null, unique
+timestamp	datetime	not null
+created_at 	datetime	not null
+updated_at	datetime	not null
+
+index on	user_id
+
+user has many imgs
+
+Likes
+column name	data type	details
+id	integer	not null, primary key
+post_id	integer	not null, foreign key, unique
+user_id	integer	not null, foreign key, unique
+created_at 	datetime	not null
+updated_at	datetime	not null
+
+index on	user_id	unique:true
+index on	post_id	unique:true
+
+a post had many likes		a like belongs to a user
+
+Comments
+column name	data type	details
+id	integer	not null, primary key
+post_id	integer	not null, foreign key
+user_id	integer	not null, foreign key
+
+index on	post_id
+
+a comment belongs to a post and to a user
+
+Following-who user is following
+column name	data type	details
+id	integer	not null, primary key
+user_id	integer	not null, indexed, foreign key, unique
+
+index on	user_id	unique:true
+
+user_id refers to the fact that a following belongs to a user
+
+Follower-who follows user
+column name	data type	details
+id	integer	not null, primary key
+following_id	integer	not null, foreign key, unique
+
+index on	following_id	unique: true
+
+following_id refers to the fact that a follower belongs to a following of a user
+
+Photo Feed
+column name	data type	details
+id	integer	not null, primary key
+
+join table: a photo feed has many posts through users followed
